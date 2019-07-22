@@ -1,12 +1,24 @@
 # DALSimAnalyzer
 
-Ce repo contient plusieurs scripts permettant de faciliter l'extraction, la fusion et l'analyse des résultats issus de 8 simulations exécutées sur le serveur. Ce nombre 8 vient du fait qu'on suppose qu'il n'y a eu que 8 simulations lancées en parallèles puisque le serveur ne dispose que de 8 cores. Néanmoins cela peut être adapté en fonction des besoins.
+Ce repo contient plusieurs scripts permettant de faciliter l'exécution de plusieurs simulations exécutées sur le serveur et d'extraire, fusionner et analyser les résultats issus de celles-ci.
 
 ## Utilisation
 
+### Exécution des simulations
+
+Sur le serveur, il faut utiliser le script `startSimus.py` pour lancer 20 simulations en parallèle.
+
+```
+python startSimus.py
+```
+
+Ce script va lancer autant de containers Docker en parallèle qu'il n'y a de CPU disponible sur la machine.
+
+Les simulations sont lancées à partir d'un dossier `source` qui contient le code du modèle, les données SIG, et les paramètres d'exécutions. Le script va copier ce dossier dans des dossiers `runX` où `X` indique qu'il s'agit de la X-ème simulation.
+
 ### Récupération des données
 
-Tout d'abords, il faut récupérer les données. On peut le faire grâce au script `extract.py`. Ce script télécharge l'ensemble des dossiers CSV des exécutions depuis le serveur sur lequel elles ont été lancées.
+Pour récupérer les données, on peut faire appel au script `extract.py`. Ce script télécharge l'ensemble des dossiers CSV des exécutions depuis le serveur sur lequel elles ont été lancées.
 
 Pour lancer `extract.py`, il est nécessaire de configurer correctement le fichier `server_access_infos.py` avec le bon `username` et le bon `servername`. Il est également nécessaire d'avoir déployé sa clé publique ssh sur le serveur dans `~/.ssh/authorized_keys`.
 
@@ -25,7 +37,7 @@ python extract.py ~/myfolder 8
 La fusion s'effectue grâce à deux scripts possibles : `merge.py` et `merge_pandas.py`. La fusion consiste à calculer les moyennes de l'ensemble des cellules des fichiers CSV des simulations.
 Le script génère les fichiers CSV fusionnés à partir des fichiers extraits précédemment et stockés dans `Results`. Les CSV fusionnés sont eux-même stocker dans le dossier `averageResults` ou `averageResults-pandas`.
 
-On propose deux méthodes car la version utilisant Pandas permet de fusionné plus facilement un nombre varaible de simulations qui ont elles-même été éxecuté sur un un nombre d'étapes différentes. Nénamoins, l'ancienne méthode permet de fusionner les fichiers `distribution_nb_FC_per_LSP` que ne permet pas Pandas (pour le moment).
+On propose deux méthodes car la version utilisant Pandas permet de fusionné plus facilement un nombre variable de simulations qui ont elles-même été exécuté sur un un nombre d'étapes différentes. Néanmoins, l'ancienne méthode permet de fusionner les fichiers `distribution_nb_FC_per_LSP` que ne permet pas Pandas (pour le moment).
 
 ### Analyse
 
