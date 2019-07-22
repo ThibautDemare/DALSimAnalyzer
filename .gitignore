@@ -1,4 +1,7 @@
 Results/
 __pycache__/
 averageResults/
+averageResults-pandas/
+Charts/
+Charts-pandas/
 run*/
