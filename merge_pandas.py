@@ -43,15 +43,14 @@ for ext in extractions:
 					break
 			if key: # this test is usefull when debug the script with a subset of dataTypes
 				if key not in dataFrames.keys():
-					dataFrames[key] = pd.read_csv(path+name, header=None, sep=";", skip_blank_lines=True)
+					dataFrames[key] = pd.read_csv(path+name, sep=";", skip_blank_lines=True)
 				else:
-					tmp = pd.read_csv(path+name, header=None, sep=";", skip_blank_lines=True)
+					tmp = pd.read_csv(path+name, sep=";", skip_blank_lines=True)
 					frames = [dataFrames[key], tmp]
 					dataFrames[key] = pd.concat(frames, sort=True, ignore_index=True)
 
 	# And now we can compute the average of all these data
 	for dfName in dataFrames.keys():
 		print(dfName)
-		dataFrames[dfName].rename(columns={0:'steps'}, inplace=True)
-		dataFrames[dfName] = dataFrames[dfName].groupby('steps').mean()
-		dataFrames[dfName].to_csv("./averageResults-pandas/"+ext+"/"+dfName+".csv", header=False, index=True, sep=";")
+		dataFrames[dfName] = dataFrames[dfName].groupby('step').mean()
+		dataFrames[dfName].to_csv("./averageResults-pandas/"+ext+"/"+dfName+".csv", index=True, sep=";")
