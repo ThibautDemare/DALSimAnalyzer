@@ -19,7 +19,7 @@ def is_number(s):
 	return False
 
 
-dataType = ["average_costs", "average_time_to_be_delivered", "average_time_to_deliver", "averageThreshold", "competition_between_LH_Antwerp", "distribution_nb_FC_per_LSP", "nb_stocks_awaiting", "number_empty_stock_final_dest", "number_empty_stock_warehouses", "share_leaving_quantities_per_transport_mode_Antwerpen", "share_leaving_quantities_per_transport_mode_Le Havre", "share_leaving_quantities_per_transport_mode_Basse-Normandie", "share_leaving_quantities_per_transport_mode_Centre", "share_leaving_quantities_per_transport_mode_Haute-Normandie", "share_leaving_quantities_per_transport_mode_Ile-de-France", "share_leaving_quantities_per_transport_mode_Picardie", "share_leaving_vehicles_per_transport_mode_Antwerpen", "share_leaving_vehicles_per_transport_mode_Le Havre", "share_leaving_vehicles_per_transport_mode_Basse-Normandie", "share_leaving_vehicles_per_transport_mode_Centre", "share_leaving_vehicles_per_transport_mode_Haute-Normandie", "share_leaving_vehicles_per_transport_mode_Ile-de-France", "share_leaving_vehicles_per_transport_mode_Picardie", "share_port_origin_region_Antwerpen", "share_port_origin_region_Le Havre", "share_port_origin_region_Basse-Normandie", "share_port_origin_region_Centre", "share_port_origin_region_Haute-Normandie", "share_port_origin_region_Ile-de-France", "share_port_origin_region_Picardie", "share_transport_mode_Antwerpen", "share_transport_mode_Le Havre", "share_transport_mode_Basse-Normandie", "share_transport_mode_Centre", "share_transport_mode_Haute-Normandie", "share_transport_mode_Ile-de-France", "share_transport_mode_Picardie", "share_transport_mode_quantities_Antwerpen", "share_transport_mode_quantities_Le Havre", "share_transport_mode_quantities_Basse-Normandie", "share_transport_mode_quantities_Centre", "share_transport_mode_quantities_Haute-Normandie", "share_transport_mode_quantities_Ile-de-France", "share_transport_mode_quantities_Picardie", "share_transport_mode_quantities", "share_transport_mode", "stocks_final_dests", "stocks_warehouses", "strat1_threshold_adoption_share", "strat2_threshold_adoption_share", "strat3_threshold_adoption_share", "strat4_threshold_adoption_share", "strategies_adoption_share", "traffic_evolution_CSN"]
+dataType = ["average_costs", "average_time_to_be_delivered", "average_time_to_deliver", "averageThreshold", "competition_between_LH_Antwerp", "distribution_nb_FC_per_LSP", "nb_stocks_awaiting", "number_empty_stock_final_dest", "number_empty_stock_warehouses", "share_leaving_quantities_per_transport_mode_Antwerpen", "share_leaving_quantities_per_transport_mode_Le Havre", "share_leaving_quantities_per_transport_mode_Basse-Normandie", "share_leaving_quantities_per_transport_mode_Centre", "share_leaving_quantities_per_transport_mode_Haute-Normandie", "share_leaving_quantities_per_transport_mode_Ile-de-France", "share_leaving_quantities_per_transport_mode_Picardie", "share_leaving_vehicles_per_transport_mode_Antwerpen", "share_leaving_vehicles_per_transport_mode_Le Havre", "share_leaving_vehicles_per_transport_mode_Basse-Normandie", "share_leaving_vehicles_per_transport_mode_Centre", "share_leaving_vehicles_per_transport_mode_Haute-Normandie", "share_leaving_vehicles_per_transport_mode_Ile-de-France", "share_leaving_vehicles_per_transport_mode_Picardie", "share_port_origin_region_Antwerpen", "share_port_origin_region_Le Havre", "share_port_origin_region_Basse-Normandie", "share_port_origin_region_Centre", "share_port_origin_region_Haute-Normandie", "share_port_origin_region_Ile-de-France", "share_port_origin_region_Picardie", "share_transport_mode_Antwerpen", "share_transport_mode_Le Havre", "share_transport_mode_Basse-Normandie", "share_transport_mode_Centre", "share_transport_mode_Haute-Normandie", "share_transport_mode_Ile-de-France", "share_transport_mode_Picardie", "share_transport_mode_quantities_Antwerpen", "share_transport_mode_quantities_Le Havre", "share_transport_mode_quantities_Basse-Normandie", "share_transport_mode_quantities_Centre", "share_transport_mode_quantities_Haute-Normandie", "share_transport_mode_quantities_Ile-de-France", "share_transport_mode_quantities_Picardie", "share_transport_mode_quantities", "share_transport_mode", "stocks_final_dests", "stocks_warehouses", "strat1_threshold_adoption_share", "strat2_threshold_adoption_share", "strat3_threshold_adoption_share", "strat4_threshold_adoption_share", "strategies_adoption_share", "traffic_evolution_CSN", "vehicles_occupancy_road", "vehicles_occupancy_river", "vehicles_occupancy_maritime", "vehicles_occupancy_secondary"]
 
 extractions = os.listdir("./Results")
 for ext in extractions:
@@ -33,7 +33,7 @@ for ext in extractions:
 
 	# We loop over the 8 simulation runs
 	# and we read each CSV files to sum every results
-	for i in range(1, 9):
+	for i in range(1, 10):
 		path = "./Results/"+ext+"/run"+str(i)+"/CSV/"
 		files = os.listdir(path)
 		for name in files:
@@ -70,7 +70,7 @@ for ext in extractions:
 				row = []
 				for i in range(0, len(averageData[dt][step])):
 					if isinstance(averageData[dt][step][i], (int, float, complex)):
-						row.append(float(averageData[dt][step][i]) / 8.0)
+						row.append(float(averageData[dt][step][i]) / 9.0)
 					else:
 						row.append(float(averageData[dt][step][i]))
 				writer.writerow(row)
