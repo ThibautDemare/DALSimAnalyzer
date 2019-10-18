@@ -255,13 +255,13 @@ dataType = {
 
 	"vehicles_occupancy_road":
 		{"dataFile":"vehicles_occupancy_road.csv", "outfile":"vehicles_occupancy_road", "xlab":"Time (hour)", "ylab":"Goods quantity", "mainTitle":"Road vehicles occupancy",
-		"curve1Label":"Road vehicles occupancy - "}
+		"curve1Label":"Road vehicles occupancy - "},
 	"vehicles_occupancy_river":
 		{"dataFile":"vehicles_occupancy_river.csv", "outfile":"vehicles_occupancy_river", "xlab":"Time (hour)", "ylab":"Goods quantity", "mainTitle":"River vehicles occupancy",
-		"curve1Label":"River vehicles occupancy"}
+		"curve1Label":"River vehicles occupancy"},
 	"vehicles_occupancy_maritime":
 		{"dataFile":"vehicles_occupancy_maritime.csv", "outfile":"vehicles_occupancy_maritime", "xlab":"Time (hour)", "ylab":"Goods quantity", "mainTitle":"Maritime vehicles occupancy",
-		"curve1Label":"Maritime vehicles occupancy"}
+		"curve1Label":"Maritime vehicles occupancy"},
 	"vehicles_occupancy_secondary":
 		{"dataFile":"vehicles_occupancy_secondary.csv", "outfile":"vehicles_occupancy_secondary", "xlab":"Time (hour)", "ylab":"Goods quantity", "mainTitle":"Secondary vehicles occupancy",
 		"curve1Label":"Secondary vehicles occupancy"}
