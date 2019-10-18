@@ -52,5 +52,6 @@ for ext in extractions:
 	# And now we can compute the average of all these data
 	for dfName in dataFrames.keys():
 		print(dfName)
+		dataFrames[dfName] = dataFrames[dfName].dropna(axis=1,how='all') # This line deletes columns when they only contains null values => should only happen with older versions of DALSim
 		dataFrames[dfName] = dataFrames[dfName].groupby('step').mean()
 		dataFrames[dfName].to_csv("./averageResults-pandas/"+ext+"/"+dfName+".csv", index=True, sep=";")
