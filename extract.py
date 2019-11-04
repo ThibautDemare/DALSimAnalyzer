@@ -16,3 +16,4 @@ for i in range(1, int(sys.argv[2]) + 1):
 	pathCurrentRun = "Results/"+extractionDate+"/run"+str(i)
 	subprocess.run("mkdir "+pathCurrentRun)
 	subprocess.Popen("scp -r "+username+"@"+servername+":"+str(sys.argv[1])+"/run"+str(i)+"/CSV "+pathCurrentRun)
+	subprocess.Popen("scp -r "+username+"@"+servername+":"+str(sys.argv[1])+"/run"+str(i)+"/Agents "+pathCurrentRun)
