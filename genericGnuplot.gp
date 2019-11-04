@@ -9,7 +9,7 @@ set key outside bottom center
 # Put a title to the x-axis
 set xlabel xlab
 
-set xrange [0:6000]
+set xrange [0:]
 set yrange [0:]
 
 # And a title to the y-axis
