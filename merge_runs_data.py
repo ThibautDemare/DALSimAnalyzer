@@ -33,6 +33,8 @@ for ext in extractions:
 	# We loop over the 8 simulation runs
 	# and we read each CSV files to sum every results
 	for run in os.listdir("./Results/"+ext+"/"):
+
+		# Merge CSV data
 		path = "./Results/"+ext+"/"+run+"/CSV/"
 		for name in os.listdir(path):
 			# Find the right keys (i.e. the right kind of result)
@@ -49,9 +51,22 @@ for ext in extractions:
 					frames = [dataFrames[key], tmp]
 					dataFrames[key] = pd.concat(frames, sort=True, ignore_index=True)
 
+		# Merge list of FinalConsignee agents at different steps
+		pathAgent = "./Results/"+ext+"/"+run+"/Agents/"
+		if os.path.exists(pathAgent): # Check for existance of this folder (don't exist for older version of DALSim)
+			for name in os.listdir(pathAgent):
+				if name not in dataFrames.keys():
+					dataFrames[name] = pd.read_csv(pathAgent+name, sep=",", skip_blank_lines=True, header=1)
+				else:
+					tmp = pd.read_csv(pathAgent+name, sep=",", skip_blank_lines=True, header=1)
+					frames = [dataFrames[name], tmp]
+					dataFrames[name] = pd.concat(frames, sort=True, ignore_index=True)
+
+
 	# And now we can compute the average of all these data
 	for dfName in dataFrames.keys():
 		print(dfName)
 		dataFrames[dfName] = dataFrames[dfName].dropna(axis=1,how='all') # This line deletes columns when they only contains null values => should only happen with older versions of DALSim
-		dataFrames[dfName] = dataFrames[dfName].groupby('step').mean()
+		if "FinalConsignee" not in dfName:
+			dataFrames[dfName] = dataFrames[dfName].groupby('step').mean()
 		dataFrames[dfName].to_csv("./averageResults-pandas/"+ext+"/"+dfName+".csv", index=True, sep=";")
