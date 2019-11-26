@@ -1,9 +1,8 @@
-csvIntoDF = function () {
-	vFiles = list.files(pattern="*.csv")
+csvIntoDF = function (pathValue="./") {
+	vFiles = list.files(path=pathValue, pattern="*.csv")
 	allData = data.frame(step = 0:15999);
 	for (filename in vFiles) {
-		print(filename);
-		df = read.csv(filename, sep=";");
+		df = read.csv(paste(pathValue, filename, sep=""), sep=";");
 		allData = merge(allData, df)
 	}
 	allData
