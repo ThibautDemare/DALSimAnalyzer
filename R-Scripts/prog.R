@@ -40,19 +40,22 @@ for(i in 1:nrow(lesCorrels)) {
 		# affichage de tout en 3 couleurs selon le pas de temps
 		plot(allData[[nomVar1]],allData[[nomVar2]], xlab=nomVar1, ylab=nomVar2, xlim=rangeVar1, ylim=rangeVar2, col = c(rep("red",6000),rep("black",2000),rep("green",6000)))
 		reg = lm(allData[[nomVar2]] ~ allData[[nomVar1]])
-		print(reg)
+		print(reg$coefficients)
+		print(summary(reg)$r.squared)
 		abline(reg, col="blue")
 
 		# affichage de la première phase (avant ouverture canal)
 		plot(allData[[nomVar1]][1:6000],allData[[nomVar2]][1:6000], xlab=nomVar1, ylab=nomVar2, col="red", xlim=rangeVar1, ylim=rangeVar2)
 		reg = lm(allData[[nomVar2]][1:6000] ~ allData[[nomVar1]][1:6000])
-		print(reg)
+		print(reg$coefficients)
+		print(summary(reg)$r.squared)
 		abline(reg, col="blue")
 
 		# affichage de la 2e phase (après ouverture canal et stabilasation)
 		plot(allData[[nomVar1]][8000:14000],allData[[nomVar2]][8000:14000], xlab=nomVar1, ylab=nomVar2, col="green", xlim=rangeVar1, ylim=rangeVar2)
 		reg = lm(allData[[nomVar2]][8000:14000] ~ allData[[nomVar1]][8000:14000])
-		print(reg)
+		print(reg$coefficients)
+		print(summary(reg)$r.squared)
 		abline(reg, col="blue")
 
 		corByTime =corByTimeStep(allData[[nomVar1]],allData[[nomVar2]], focusLength=2000, stepLength=250)
