@@ -46,7 +46,7 @@ corByTimeStep = function (var1, var2, focusLength=1000, stepLength = 500) {
 	max = (nbMesures/stepLength)-1;
 	for (depart in 0:max) {
 		debut = stepLength*depart;
-		fin = min(debut+1000,nbMesures);
+		fin = min(debut+focusLength,nbMesures);
 		resu = c(resu, cor(var1[debut:fin],var2[debut:fin]));
 	}
 	resu;
