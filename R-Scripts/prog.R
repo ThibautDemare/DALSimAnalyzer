@@ -20,10 +20,13 @@ allData = allData[ , -toDelete]
 allData = allData[, -1]
 
 # étape 3 on calcule les corrélations
-# recherche de var coréllé globalement [2000;16000]
-	
+# recherche de var coréllé globalement sur le range [2000;16000]
 allData = allData[2000:16000,]
 
+# etape 4 : on crée une colonne avec 0 si CSN off ou on
+allData$CSN = c(rep(0, 6000), rep(1, 8001))
+
+# etape 5 : on effectue les calculs de corrélations
 lesCorrels = lesCorrelations(allData, 6000);
 
 for(i in 1:nrow(lesCorrels)) {
